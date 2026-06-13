@@ -1,9 +1,11 @@
-# arch-center
+# arch-centre
 a TUI utility aiming to unify system configuration and management into a single program
 
 # Install
+
 In order to install the program, you first have to download it.
-```bash
+
+```sh
 git clone https://github.com/imawsumm/arch-center
 cd arch-center/
 ```
@@ -11,9 +13,10 @@ cd arch-center/
 This programs is in C. Therefore it needs to be compiled before being executed.  
 
 Compile using make:
+
 ```bash
-make archc
-./arch-center
+make centre
+./arch-centre
 ```
 
 ## Features
