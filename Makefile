@@ -21,13 +21,13 @@ full_recompilation:
 
 user_recompilation:
 	@gcc $(USER_FLAGS) -c $(menu)
-	@gcc $(USER_FLAGS) -c $(function)
+	@gcc $(USER_FLAGS) -c $(functions)
 	@gcc $(USER_FLAGS) -c $(programs)
 	@gcc $(USER_FLAGS) -c $(submenu)
 
 zig_recompilation:
 	zig cc $(ZIG_FLAGS) -c $(menu)
-	zig cc $(ZIG_FLAGS) -c $(function)
+	zig cc $(ZIG_FLAGS) -c $(functions)
 	zig cc $(ZIG_FLAGS) -c $(programs)
 	zig cc $(ZIG_FLAGS) -c $(submenu)
 
@@ -38,15 +38,15 @@ clean:
 	@rm src/submenu.o
 
 archc: user_recompilation
-	@gcc src/programs.o src/submenu.o src/functions.o src/menu.o -o arch-center $(FLAGS)
+	@gcc src/programs.o src/submenu.o src/functions.o src/menu.o -o arch-centre $(FLAGS)
 
-arch-center: user_recompilation
-	@gcc src/programs.o src/submenu.o src/functions.o src/menu.o -o arch-center $(FLAGS)
+arch-centre: user_recompilation
+	@gcc src/programs.o src/submenu.o src/functions.o src/menu.o -o arch-centre $(FLAGS)
 
 
 full: full_recompilation
-	@gcc src/programs.o src/submenu.o src/functions.o src/menu.o -o arch-center $(FLAGS)
+	@gcc src/programs.o src/submenu.o src/functions.o src/menu.o -o arch-centre $(FLAGS)
 
 zigg: zig_recompilation
-	@zig cc src/programs.o src/submenu.o src/functions.o src/menu.o -o arch-center $(ZIG_FLAGS)
+	@zig cc src/programs.o src/submenu.o src/functions.o src/menu.o -o arch-centre $(ZIG_FLAGS)
 
