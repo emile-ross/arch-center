@@ -2,12 +2,12 @@
 
 void init_menu(void)
 {
-    initscr();
-    clear();
-    noecho();
-    cbreak();
-    keypad(stdscr, TRUE);
-    curs_set(0);
+	initscr();
+	clear();
+	noecho();
+	cbreak();
+	keypad(stdscr, TRUE);
+	curs_set(0);
 }
 
 struct timespec install_timer; 

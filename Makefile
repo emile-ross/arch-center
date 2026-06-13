@@ -14,7 +14,7 @@ submenu = src/submenu.c -o $(submenu_object)
 
 full_recompilation:
 	gcc $(FLAGS) -c $(menu)
-	gcc $(FLAGS) -c $(function)
+	gcc $(FLAGS) -c $(functions)
 	gcc $(FLAGS) -c $(programs)
 	gcc $(FLAGS) -c $(submenu)
 	@echo "Compiling full application"
