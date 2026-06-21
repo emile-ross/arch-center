@@ -10,7 +10,11 @@ submenu_object = src/submenu.o
 menu = src/menu.c -o $(menu_object)
 functions = src/functions.c -o $(functions_object)
 programs = src/programs.c -o $(programs_object)
-submenu = src/submenu.c -o $(submenu_object)
+
+SRCS := src/programs.c src/functions.c src/menu.c src/submenu.c
+OUTPUT = -o $(submenu_object)
+
+SRC_FILES := $(addprefix $(SRCDIR), $(SRCS)) $(OUTPUT)
 
 full_recompilation:
 	gcc $(FLAGS) -c $(menu)
@@ -48,4 +52,8 @@ full: full_recompilation
 
 zigg: zig_recompilation
 	@zig cc src/programs.o src/submenu.o src/functions.o src/menu.o -o arch-centre $(ZIG_FLAGS)
+
+base: 
+	zig cc $(SRC_FILES) $(FLAGS)
+
 
