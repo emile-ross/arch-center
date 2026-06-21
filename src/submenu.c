@@ -5,7 +5,7 @@ int system_monitoring(void)
 {
 	int choice = -1;
 	int highlight = 0;
-	
+	size_t base_cmd_size = 16;
 	while(1)
 	{
 		const char *choices[] = 
@@ -64,7 +64,7 @@ int system_monitoring(void)
 			  return 0;
 		}
 	
-		char cmd[16];
+		char *cmd = malloc(base_cmd_size);
 		switch (choice)
 		{
 		case 0:
@@ -101,6 +101,8 @@ int system_monitoring(void)
 		default:
 			break;
 		}
+
+		free(cmd);
 	}
 	endwin();
 	return 0;
@@ -144,28 +146,29 @@ int settings_menu(void)
 	
 		switch (c) 
 		{
-		    case KEY_UP:
-		        highlight--;
-		        if (highlight < 0)
-		            highlight = n_choices - 1;
-		        break;
+		case KEY_UP:
+			highlight--;
+			if (highlight < 0)
+				highlight = n_choices - 1;
+			break;
 	
-		    case KEY_DOWN:
-		        highlight++;
-		        if (highlight >= n_choices)
-		            highlight = 0;
-		        break;
+		case KEY_DOWN:
+			highlight++;
+			if (highlight >= n_choices)
+				highlight = 0;
+			break;
 	
-		    case 10:  // Enter key
-		        choice = highlight;
-		        break;
-	
-		    case 'b':
-		        endwin();
-	    	return 0;
+		case 10:  /* Enter key */
+			choice = highlight;
+			break;
+			
+		case 'b':
+			endwin();
+			return 0;
 		}
 	
-		char cmd[32];
+		size_t base_cmd_size = 32;
+		char *cmd = malloc(base_cmd_size);
 		switch (choice)
 		{
 		case 0:
@@ -174,7 +177,7 @@ int settings_menu(void)
 			
 			break;
 		case 1:
-			snprintf(cmd, sizeof(cmd),
+			snprintf(cmd, base_cmd_size,
 					"sudo pacman -Q");
 			system(cmd);
 			
@@ -196,6 +199,7 @@ int settings_menu(void)
 			choice = -1;
 			break;
 		}
+		free(cmd);
 	}
 	endwin();
 	return 0;
@@ -241,25 +245,25 @@ int disk_management(void)
 	
 		switch (c) 
 		{
-		    case KEY_UP:
-		        highlight--;
-		        if (highlight < 0)
-		            highlight = n_choices - 1;
-		        break;
+			case KEY_UP:
+				highlight--;
+				if (highlight < 0)
+					highlight = n_choices - 1;
+				break;
 	
-		    case KEY_DOWN:
-		        highlight++;
-		        if (highlight >= n_choices)
-		            highlight = 0;
-		        break;
+			case KEY_DOWN:
+				highlight++;
+				if (highlight >= n_choices)
+					highlight = 0;
+				break;
 	
-		    case 10:  // Enter key
-		        choice = highlight;
-		        break;
+			case 10:  /* Enter key */
+				choice = highlight;
+			    	break;
 	
-		    case 'b':
-		        endwin();
-	    	return 0;
+			case 'b':
+				endwin();
+				return 0;
 		}
 	    
 		switch (choice)

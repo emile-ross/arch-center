@@ -14,7 +14,7 @@ int main(void)
 	
 	int n_choices = ARRAY_SIZE(choices);
 	
-	// initialize ncurses
+	/* initialize ncurses */
 	init_menu();
 	
 	int choice = -1;
