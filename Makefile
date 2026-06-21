@@ -3,22 +3,23 @@ CC := gcc
 FLAGS = -Wall -Wextra -lncurses -std=c99
 USER_FLAGS = -lncurses
 ZIG_FLAGS = -Wall -Wextra -lncurses -Wpedantic -fsanitize=undefined -Werror -std=c99 -Wconversion
-OUTPUT = -o $(submenu_object)
 SRCDIR := src/
+SRCS = programs functions menu submenu
+OUTPUT = -o arch-centre
 
-SRC_FILES := $(addprefix $(SRCDIR), $(SRCS)) $(OUTPUT)
+SRC_EXT = .c
 OBJ_EXT = .o
 
-archc: user_recompilation
-	$(CC) $(SRC_FILES) $(FLAGS)
 SRC_FILES := $(addprefix $(SRCDIR), $(SRCS))
 
-arch-centre: user_recompilation
-	@gcc src/programs.o src/submenu.o src/functions.o src/menu.o -o arch-centre $(FLAGS)
+SRC_F_PATH := $(addsuffix $(SRC_EXT), $(SRC_FILES))
 OBJ_F_PATH := $(addsuffix $(OBJ_EXT), $(SRC_FILES))
 
+archc:
+	$(CC) $(SRC_F_PATH) $(OUTPUT) $(FLAGS)
+
 base: 
-	zig cc $(SRC_FILES) $(ZIG_FLAGS)
+	zig cc $(SRC_F_PATH) $(OUTPUT) $(ZIG_FLAGS)
 
 clean:
 	rm $(OBJ_F_PATH)
