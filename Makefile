@@ -1,59 +1,19 @@
+CC := gcc
+
 FLAGS = -Wall -Wextra -lncurses -std=c99
 USER_FLAGS = -lncurses
 ZIG_FLAGS = -Wall -Wextra -lncurses -Wpedantic -fsanitize=undefined -Werror -std=c99 -Wconversion
-
-menu_object = src/menu.o
-functions_object = src/functions.o
-programs_object = src/programs.o
-submenu_object = src/submenu.o
-
-menu = src/menu.c -o $(menu_object)
-functions = src/functions.c -o $(functions_object)
-programs = src/programs.c -o $(programs_object)
-
 SRCS := src/programs.c src/functions.c src/menu.c src/submenu.c
 OUTPUT = -o $(submenu_object)
 
 SRC_FILES := $(addprefix $(SRCDIR), $(SRCS)) $(OUTPUT)
 
-full_recompilation:
-	gcc $(FLAGS) -c $(menu)
-	gcc $(FLAGS) -c $(functions)
-	gcc $(FLAGS) -c $(programs)
-	gcc $(FLAGS) -c $(submenu)
-	@echo "Compiling full application"
-
-user_recompilation:
-	@gcc $(USER_FLAGS) -c $(menu)
-	@gcc $(USER_FLAGS) -c $(functions)
-	@gcc $(USER_FLAGS) -c $(programs)
-	@gcc $(USER_FLAGS) -c $(submenu)
-
-zig_recompilation:
-	zig cc $(ZIG_FLAGS) -c $(menu)
-	zig cc $(ZIG_FLAGS) -c $(functions)
-	zig cc $(ZIG_FLAGS) -c $(programs)
-	zig cc $(ZIG_FLAGS) -c $(submenu)
-
-clean: 
-	@rm src/menu.o
-	@rm src/functions.o
-	@rm src/programs.o
-	@rm src/submenu.o
-
 archc: user_recompilation
-	@gcc src/programs.o src/submenu.o src/functions.o src/menu.o -o arch-centre $(FLAGS)
+	$(CC) $(SRC_FILES) $(FLAGS)
 
 arch-centre: user_recompilation
 	@gcc src/programs.o src/submenu.o src/functions.o src/menu.o -o arch-centre $(FLAGS)
 
-full: full_recompilation
-	@gcc src/programs.o src/submenu.o src/functions.o src/menu.o -o arch-centre $(FLAGS)
-
-zigg: zig_recompilation
-	@zig cc src/programs.o src/submenu.o src/functions.o src/menu.o -o arch-centre $(ZIG_FLAGS)
-
 base: 
-	zig cc $(SRC_FILES) $(FLAGS)
-
+	zig cc $(SRC_FILES) $(ZIG_FLAGS)
 
