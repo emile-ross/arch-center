@@ -1,6 +1,6 @@
 FLAGS = -Wall -Wextra -lncurses -std=c99
 USER_FLAGS = -lncurses
-ZIG_FLAGS = -Wall -Wextra -lncurses -pedantic -fsanitize=undefined -Werror -std=c99
+ZIG_FLAGS = -Wall -Wextra -lncurses -Wpedantic -fsanitize=undefined -Werror -std=c99 -Wconversion
 
 menu_object = src/menu.o
 functions_object = src/functions.o
@@ -42,7 +42,6 @@ archc: user_recompilation
 
 arch-centre: user_recompilation
 	@gcc src/programs.o src/submenu.o src/functions.o src/menu.o -o arch-centre $(FLAGS)
-
 
 full: full_recompilation
 	@gcc src/programs.o src/submenu.o src/functions.o src/menu.o -o arch-centre $(FLAGS)

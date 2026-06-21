@@ -10,7 +10,6 @@ void init_menu(void)
 	curs_set(0);
 }
 
-struct timespec install_timer; 
 long int time_timer_quarters;
 long int time_timer_seconds;
 
@@ -37,6 +36,7 @@ void display_menu(int d_highlight, int d_amount_of_options, const char **d_optio
 
 void delay(int delay_quarters, int delay_seconds)
 {
+	struct timespec install_timer; 
 	if (delay_quarters < 4)
 	{
 		time_timer_quarters = delay_quarters * 250000000;
