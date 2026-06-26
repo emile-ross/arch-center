@@ -5,7 +5,8 @@ int system_monitoring(void)
 {
 	int choice = -1;
 	int highlight = 0;
-	size_t base_cmd_size = 16;
+	const size_t cmd_size = 16;
+
 	while(1)
 	{
 		const char *choices[] = 
@@ -64,11 +65,11 @@ int system_monitoring(void)
 			  return 0;
 		}
 	
-		char *cmd = malloc(base_cmd_size);
+		char *cmd = malloc(cmd_size);
 		switch (choice)
 		{
 		case 0:
-			snprintf(cmd, sizeof(cmd),
+			snprintf(cmd, cmd_size,
 					"htop");
 			system(cmd);
 			
@@ -77,7 +78,7 @@ int system_monitoring(void)
 			
 			break;
 		case 1:
-			snprintf(cmd, sizeof(cmd),
+			snprintf(cmd, cmd_size,
 					"btop");
 			system(cmd);
 		
@@ -86,7 +87,7 @@ int system_monitoring(void)
 		
 			break;
 		case 2:
-			snprintf(cmd, sizeof(cmd),
+			snprintf(cmd, cmd_size,
 					"glances");
 			system(cmd);
 			
@@ -167,8 +168,8 @@ int settings_menu(void)
 			return 0;
 		}
 	
-		size_t base_cmd_size = 32;
-		char *cmd = malloc(base_cmd_size);
+		size_t cmd_size = 32;
+		char *cmd = malloc(cmd_size);
 		switch (choice)
 		{
 		case 0:
@@ -177,7 +178,7 @@ int settings_menu(void)
 			
 			break;
 		case 1:
-			snprintf(cmd, base_cmd_size,
+			snprintf(cmd, cmd_size,
 					"sudo pacman -Q");
 			system(cmd);
 			
