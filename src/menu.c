@@ -43,17 +43,19 @@ int main(void)
 		
 		switch (c) 
 		{
+		case 'k':
 		case KEY_UP:
 			highlight--;
 			if (highlight < 0)
 				highlight = n_choices - 1;
 			break;
 		
+		case 'j':
 		case KEY_DOWN:
-		    highlight++;
-		    if (highlight >= n_choices)
-		        highlight = 0;
-		    break;
+			highlight++;
+			if (highlight >= n_choices)
+				highlight = 0;
+			break;
 		
 		case 10:  /* Enter key */
 			choice = highlight;
@@ -69,29 +71,29 @@ int main(void)
 		
 		if (choice == 3)
 		{
-		    endwin();
-		    return 0;
+			endwin();
+			return 0;
 		}
 		else if (choice == 0)
 		{
-		    choice = -1;
-		    highlight = 0;
+			choice = -1;
+			highlight = 0;
 		}
 		else if (choice == 1)
 		{
-		    system_monitoring();
-		    choice = -1;
-		    highlight = 0;
+			system_monitoring();
+			choice = -1;
+			highlight = 0;
 		}
 		else if (choice == 2)
 		{
-		    settings_menu();
-		    choice = -1;
-		    highlight = 0;
+			settings_menu();
+			choice = -1;
+			highlight = 0;
 		}
 		else
 		{
-		    choice = -1;
+			choice = -1;
 		}
 	}
 	endwin();
