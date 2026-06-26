@@ -7,19 +7,12 @@ SRCDIR := src/
 SRCS = programs functions menu submenu
 OUTPUT = -o arch-centre
 
-SRC_EXT = .c
-OBJ_EXT = .o
-
 SRC_FILES := $(addprefix $(SRCDIR), $(SRCS))
 
-SRC_F_PATH := $(addsuffix $(SRC_EXT), $(SRC_FILES))
-OBJ_F_PATH := $(addsuffix $(OBJ_EXT), $(SRC_FILES))
+SRC_F_PATH := $(addsuffix .c, $(SRC_FILES))
 
 archc:
 	$(CC) $(SRC_F_PATH) $(OUTPUT) $(FLAGS)
 
 base: 
 	zig cc $(SRC_F_PATH) $(OUTPUT) $(ZIG_FLAGS)
-
-clean:
-	rm $(OBJ_F_PATH)
