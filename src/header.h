@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include "enums.h"
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 
