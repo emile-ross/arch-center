@@ -3,12 +3,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+
 #include "enums.h"
+/* get user input */
+menu_input_type get_input(int *choice, int *highlight, const int *number_of_choices);
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 
+extern const int base_indent_left;
 extern const int indent_left;
-extern const int opt_indent_left;
 
 extern int lines_from_top;
 extern int amount_of_options;

@@ -13,7 +13,6 @@ void init_menu(void)
 long int time_timer_quarters;
 long int time_timer_seconds;
 
-const int indent_left = 1;
 int lines_from_top;
 int amount_of_options;
 
@@ -74,31 +73,31 @@ void menu_tip(char *menu_type, int line)
 	}
 }
 
-menu_input_type get_input(int *choice, int *highlight, const int *number_of_choices)
+menu_input_type get_input(int *choice, int *highlight __attribute__((unused)), const int *number_of_choices)
 {
 	int user_input = getch();
 	
-	switch (c) 
+	switch (user_input) 
 	{
 	case 'k':
 	case KEY_UP:
 		*choice = -1;
-		*highlight--;
-		if (highlight < 0)
-			highlight = number_of_choices - 1;
-		break;
+		*(highlight) -= 1;
+		if (*highlight < 0)
+			*highlight = *number_of_choices - 1;
+		return menu_up;
 	
 	case 'j':
 	case KEY_DOWN:
 		*choice = -1;
-		*highlight++;
+		*(highlight) += 1;
 		if (highlight >= number_of_choices)
 			*highlight = 0;
-		break;
+		return menu_down;
 	
-	case menu_enter:  /* Enter key */
-		*choice = *highlight;
-		break;
+	case 10:  /* Enter key */
+		*(choice) = *(highlight);
+		return menu_enter;
 	
 	case 'B':
 	case 'b':
@@ -107,18 +106,11 @@ menu_input_type get_input(int *choice, int *highlight, const int *number_of_choi
 
 	case 'Q':
 	case 'q':
+		/* close windows before exiting program */
 		endwin();
 		exit(0);
 	default:
 		return menu_invalid;
 	}
 
-
-	menu_enter = 10,
-	menu_up,
-	menu_down,
-	menu_quit,
-	menu_back,
-	menu_other,
-	,
-} menu_input_type;
+}

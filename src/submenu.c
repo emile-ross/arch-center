@@ -28,12 +28,12 @@ int system_monitoring(void)
 			if (i == highlight)
 			{
 				attron(A_REVERSE);
-				mvprintw(3 + i, opt_indent_left + 1, "%s", choices[i]);
+				mvprintw(3 + i, base_indent_left + indent_left, "%s", choices[i]);
 				attroff(A_REVERSE);
 			}
 			else 
 			{
-				mvprintw(3 + i, opt_indent_left, "%s", choices[i]);
+				mvprintw(3 + i, base_indent_left, "%s", choices[i]);
 			}
 		}
 	
@@ -134,12 +134,12 @@ int settings_menu(void)
 			if (i == highlight)
 			{
 				attron(A_REVERSE);
-				mvprintw(3 + i, opt_indent_left + 1, "%s", choices[i]);
+				mvprintw(3 + i, base_indent_left + indent_left, "%s", choices[i]);
 				attroff(A_REVERSE);
 			}
 			else 
 			{
-				mvprintw(3 + i, opt_indent_left, "%s", choices[i]);
+				mvprintw(3 + i, base_indent_left, "%s", choices[i]);
 			}
 		}
 
@@ -233,12 +233,12 @@ int disk_management(void)
 			if (i == highlight)
 			{
 				attron(A_REVERSE);
-				mvprintw(3 + i, opt_indent_left + 1, "%s", choices[i]);
+				mvprintw(3 + i, base_indent_left + indent_left, "%s", choices[i]);
 				attroff(A_REVERSE);
 			}
 			else 
 			{
-				mvprintw(3 + i, opt_indent_left, "%s", choices[i]);
+				mvprintw(3 + i, base_indent_left, "%s", choices[i]);
 			}
 		}
 

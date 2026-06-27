@@ -1,6 +1,5 @@
 #include "header.h"
 
-const int opt_indent_left = 4;
 
 int main(void) 
 {
@@ -30,12 +29,12 @@ int main(void)
 			if (i == highlight)
 			{
 				attron(A_REVERSE);
-				mvprintw(3 + i, opt_indent_left + 1, "%s", choices[i]);
+				mvprintw(3 + i, base_indent_left + indent_left, "%s", choices[i]);
 				attroff(A_REVERSE);
 			}
 			else 
 			{
-				mvprintw(3 + i, opt_indent_left, "%s", choices[i]);
+				mvprintw(3 + i, base_indent_left, "%s", choices[i]);
 			}
 		}
 		
