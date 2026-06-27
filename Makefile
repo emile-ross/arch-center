@@ -9,7 +9,7 @@ OUTPUT = -o arch-centre
 
 SRC_FILES := $(addprefix $(SRCDIR), $(SRCS))
 
-SRC_F_PATH := $(addsuffix .c, $(SRC_FILES))
+SRC_F_PATH := $(addsuffix .c, $(SRC_FILES) config)
 
 archc:
 	$(CC) $(SRC_F_PATH) $(OUTPUT) $(FLAGS)
