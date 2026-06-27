@@ -90,8 +90,8 @@ menu_input_type get_input(int *choice, int *highlight __attribute__((unused)), c
 	case 'j':
 	case KEY_DOWN:
 		*choice = -1;
-		*(highlight) += 1;
-		if (highlight >= number_of_choices)
+		*highlight += 1;
+		if (*highlight >= *number_of_choices)
 			*highlight = 0;
 		return menu_down;
 	
