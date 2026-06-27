@@ -6,7 +6,7 @@
 
 #include "enums.h"
 /* get user input */
-menu_input_type get_input(int *choice, int *highlight, const int *number_of_choices);
+menu_input_type get_input(int *choice, int *highlight __attribute__((unused)), const int *number_of_choices);
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 

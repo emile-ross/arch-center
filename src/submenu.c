@@ -37,32 +37,12 @@ int system_monitoring(void)
 			}
 		}
 	
-		int c = getch();
-		switch (c) 
+		int num_choices = 4;
+		menu_input_type input_type = get_input(&choice, &highlight, &num_choices);
+
+		if (input_type == menu_back)
 		{
-		case KEY_UP:
-			highlight--;
-			if (highlight < 0)
-			{
-				highlight = n_choices - 1;
-			}
-			break;
-
-		case KEY_DOWN:
-			highlight++;
-			if (highlight >= n_choices)
-			{
-				highlight = 0;
-			}
-			break;
-
-		case 10:  /* Enter key */
-			  choice = highlight;
-			  break;
-
-		case 'b':
-			  endwin();
-			  return 0;
+			return 0;
 		}
 	
 		char *cmd = malloc(cmd_size);

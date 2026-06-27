@@ -11,7 +11,7 @@ int main(void)
 		"Exit",
 	};
 	
-	int n_choices = ARRAY_SIZE(choices);
+	const int n_choices = ARRAY_SIZE(choices);
 	
 	/* initialize ncurses */
 	init_menu();
@@ -38,35 +38,7 @@ int main(void)
 			}
 		}
 		
-		int c = getch();
-		
-		switch (c) 
-		{
-		case 'k':
-		case KEY_UP:
-			highlight--;
-			if (highlight < 0)
-				highlight = n_choices - 1;
-			break;
-		
-		case 'j':
-		case KEY_DOWN:
-			highlight++;
-			if (highlight >= n_choices)
-				highlight = 0;
-			break;
-		
-		case 10:  /* Enter key */
-			choice = highlight;
-			break;
-		
-		case 'q':
-			endwin();
-			return 0;
-		default:
-			choice = -1;
-			break;
-		}
+		get_input(&choice, &highlight, &n_choices);
 		
 		if (choice == 3)
 		{
