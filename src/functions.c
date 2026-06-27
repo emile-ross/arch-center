@@ -73,3 +73,52 @@ void menu_tip(char *menu_type, int line)
 		mvprintw(indent_left, line, "\"Invalid tip integer\"");
 	}
 }
+
+menu_input_type get_input(int *choice, int *highlight, const int *number_of_choices)
+{
+	int user_input = getch();
+	
+	switch (c) 
+	{
+	case 'k':
+	case KEY_UP:
+		*choice = -1;
+		*highlight--;
+		if (highlight < 0)
+			highlight = number_of_choices - 1;
+		break;
+	
+	case 'j':
+	case KEY_DOWN:
+		*choice = -1;
+		*highlight++;
+		if (highlight >= number_of_choices)
+			*highlight = 0;
+		break;
+	
+	case menu_enter:  /* Enter key */
+		*choice = *highlight;
+		break;
+	
+	case 'B':
+	case 'b':
+		*choice = -1;
+		return menu_back;
+
+	case 'Q':
+	case 'q':
+		endwin();
+		exit(0);
+	default:
+		return menu_invalid;
+	}
+
+
+	menu_enter = 10,
+	menu_up,
+	menu_down,
+	menu_quit,
+	menu_back,
+	menu_other,
+	,
+} menu_input_type;

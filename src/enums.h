@@ -1,9 +1,9 @@
 
 typedef enum 
 {
+	menu_enter = 10,
 	menu_up,
 	menu_down,
-	menu_enter,
 	menu_quit,
 	menu_other,
 	menu_invalid,
